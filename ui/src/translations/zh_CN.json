@@ -1,5 +1,10 @@
 {
   "zh_CN": {
+    "versionUpgradeNotice": {
+      "title": "Kestra 已升级到 {version}",
+      "body": "这是一个新版本，可能包含重大更改，需要更新您的 Flow。",
+      "cta": "查看更改"
+    },
     "loading": "加载中...",
     "more actions": "更多操作",
     "recipe": {
