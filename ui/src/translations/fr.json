@@ -1,8 +1,7 @@
 {
   "fr": {
     "versionUpgradeNotice": {
-      "title": "Kestra a été mis à niveau vers la version {version}",
-      "body": "Il s'agit d'une nouvelle version et elle peut inclure des changements majeurs qui nécessitent des mises à jour de vos Flows.",
+      "message": "Kestra a été mis à niveau vers la version {version} et cela peut inclure des changements majeurs qui nécessitent des mises à jour de vos Flows.",
       "cta": "Voir les modifications"
     },
     "loading": "Chargement...",

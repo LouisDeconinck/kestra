@@ -1,8 +1,7 @@
 {
   "pt": {
     "versionUpgradeNotice": {
-      "title": "O Kestra foi atualizado para a versão {version}",
-      "body": "Esta é uma nova versão e pode incluir alterações que exigem atualizações nos seus Flows.",
+      "message": "O Kestra foi atualizado para a versão {version} e pode incluir alterações que exigem atualizações nos seus Flows.",
       "cta": "Ver o que mudou"
     },
     "loading": "A carregar...",

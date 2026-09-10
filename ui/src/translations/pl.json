@@ -1,8 +1,7 @@
 {
   "pl": {
     "versionUpgradeNotice": {
-      "title": "Kestra został zaktualizowany do wersji {version}",
-      "body": "To jest nowa wersja, która może zawierać zmiany powodujące niezgodność i wymagające aktualizacji Twoich Flowów.",
+      "message": "Kestra został zaktualizowany do wersji {version} i może zawierać zmiany powodujące niezgodność, które wymagają aktualizacji Twoich Flowów.",
       "cta": "Zobacz, co się zmieniło"
     },
     "loading": "Ładowanie...",

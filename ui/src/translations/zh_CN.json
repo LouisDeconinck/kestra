@@ -1,8 +1,7 @@
 {
   "zh_CN": {
     "versionUpgradeNotice": {
-      "title": "Kestra 已升级到 {version}",
-      "body": "这是一个新版本，可能包含重大更改，需要更新您的 Flow。",
+      "message": "Kestra 已升级到 {version}，可能包含需要更新 Flow 的重大更改。",
       "cta": "查看更改"
     },
     "loading": "加载中...",
