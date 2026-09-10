@@ -20,10 +20,10 @@
 
     const {notice, visible, dismiss} = useVersionUpgradeNotice()
 
-    // Indirect, so the target can move when the website structure changes.
+    // Guides are published per minor release, always with a .0 patch: /docs/migration-guide/v2.0.0.
     const migrationGuideUrl = computed(() => {
         const [major, minor] = (notice.value?.to ?? "").split(".")
-        return `https://go.kestra.io/migration-guide/${major}.${minor}`
+        return `https://kestra.io/docs/migration-guide/v${major}.${minor}.0`
     })
 </script>
 
