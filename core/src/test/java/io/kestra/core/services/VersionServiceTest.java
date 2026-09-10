@@ -243,13 +243,22 @@ class VersionServiceTest {
     }
 
     @Test
-    void shouldReportNoticeOnMinorUpgrade() {
-        // Given
+    void shouldReportNoNoticeForAReleaseLineOtherThan2Dot0() {
+        // 2.0 is the only line with a published migration notice: 2.1 and later stay silent.
         givenUpgradeFrom("2.0.3", Instant.now());
         when(versionProvider.getVersion()).thenReturn("2.1.0");
 
-        // When / Then
-        assertThat(versionService.pendingUpgradeNotice()).isPresent();
+        assertThat(versionService.pendingUpgradeNotice()).isEmpty();
+    }
+
+    @Test
+    void shouldReportNoticeOnAnyPatchOfThe2Dot0Line() {
+        // What a backport to releases/v2.0.x actually runs: the notice fires for 2.0.5, not just 2.0.0.
+        givenUpgradeFrom("1.3.4", Instant.now());
+        when(versionProvider.getVersion()).thenReturn("2.0.5");
+
+        assertThat(versionService.pendingUpgradeNotice())
+            .hasValueSatisfying(notice -> assertThat(notice.to()).isEqualTo("2.0.5"));
     }
 
     @Test
@@ -275,8 +284,8 @@ class VersionServiceTest {
     @Test
     void shouldReportNoNoticeOnDowngrade() {
         // Given
-        givenUpgradeFrom("2.0.0", Instant.now());
-        when(versionProvider.getVersion()).thenReturn("1.3.4");
+        givenUpgradeFrom("2.1.0", Instant.now());
+        when(versionProvider.getVersion()).thenReturn("2.0.0");
 
         // When / Then
         assertThat(versionService.pendingUpgradeNotice()).isEmpty();

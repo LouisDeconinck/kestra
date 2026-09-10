@@ -32,6 +32,13 @@ public class VersionService {
      */
     private static final Duration UPGRADE_NOTICE_WINDOW = Duration.ofDays(30);
 
+    /**
+     * The single release line the upgrade notice is published for. 2.0 is the breaking release;
+     * later minors are deliberately silent, so upgrading to 2.1 or 2.2 announces nothing. Change
+     * this only for a release that genuinely ships a migration guide worth interrupting users for.
+     */
+    private static final String ANNOUNCED_RELEASE_LINE = "2.0";
+
     private static final String PREVIOUS_VERSION_KEY = "version";
     private static final String UPGRADED_AT_KEY = "upgradedAt";
 
@@ -111,7 +118,8 @@ public class VersionService {
      * <p>
      * Empty when the instance was freshly installed, when only the patch version moved, when the version
      * moved backwards, when either version is unparseable (a development build reports {@code Snapshot}),
-     * or when the upgrade is older than {@link #UPGRADE_NOTICE_WINDOW}.
+     * when the upgrade is older than {@link #UPGRADE_NOTICE_WINDOW}, or when the new version is not on
+     * {@link #ANNOUNCED_RELEASE_LINE}.
      *
      * @return the upgrade worth reporting, or empty.
      */
@@ -155,6 +163,11 @@ public class VersionService {
         boolean sameMajorAndMinor = previous.majorVersion() == current.majorVersion()
             && previous.minorVersion() == current.minorVersion();
         if (sameMajorAndMinor) {
+            return Optional.empty();
+        }
+
+        String targetLine = current.majorVersion() + "." + current.minorVersion();
+        if (!ANNOUNCED_RELEASE_LINE.equals(targetLine)) {
             return Optional.empty();
         }
 

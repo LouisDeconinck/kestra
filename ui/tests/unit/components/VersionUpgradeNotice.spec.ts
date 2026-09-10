@@ -32,7 +32,9 @@ describe("VersionUpgradeNotice", () => {
 
     it("links to the .0 guide of the minor line, which is the only one published", () => {
         // Jumping 1.3.4 to 2.0.3 must still land on v2.0.0; there is no v2.0.3 guide.
+        // What a backport to releases/v2.0.x runs: 2.0.5 must still point at the v2.0.0 guide.
         expect(hrefFor("2.0.3")).toBe("https://kestra.io/docs/migration-guide/v2.0.0")
-        expect(hrefFor("2.1.2")).toBe("https://kestra.io/docs/migration-guide/v2.1.0")
+        expect(hrefFor("2.0.5")).toBe("https://kestra.io/docs/migration-guide/v2.0.0")
+        expect(hrefFor("2.0.0-rc13")).toBe("https://kestra.io/docs/migration-guide/v2.0.0")
     })
 })
