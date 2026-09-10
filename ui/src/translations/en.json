@@ -1,8 +1,7 @@
 {
   "en": {
     "versionUpgradeNotice": {
-      "title": "Kestra was upgraded to {version}",
-      "body": "This is a new release and it may include breaking changes that require updates to your flows.",
+      "message": "Kestra was upgraded to {version} and it may include breaking changes that require updates to your flows.",
       "cta": "See what changed"
     },
     "loading": "Loading...",

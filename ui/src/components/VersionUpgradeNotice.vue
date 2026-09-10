@@ -2,15 +2,17 @@
     <KsAlert
         v-if="visible"
         type="info"
-        :title="$t('versionUpgradeNotice.title', {version: notice!.to})"
+        center
         closable
         class="banner"
         @close="dismiss"
     >
-        {{ $t("versionUpgradeNotice.body") }}
-        <KsLink type="primary" :href="migrationGuideUrl" target="_blank">
-            {{ $t("versionUpgradeNotice.cta") }}
-        </KsLink>
+        <template #title>
+            {{ $t("versionUpgradeNotice.message", {version: notice!.to}) }}
+            <KsLink type="primary" :href="migrationGuideUrl" target="_blank">
+                {{ $t("versionUpgradeNotice.cta") }}
+            </KsLink>
+        </template>
     </KsAlert>
 </template>
 
