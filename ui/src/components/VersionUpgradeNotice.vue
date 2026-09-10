@@ -4,13 +4,13 @@
         type="info"
         :title="$t('versionUpgradeNotice.title', {version: notice!.to})"
         closable
-        class="version-upgrade-notice"
+        class="banner"
         @close="dismiss"
     >
-        <p>{{ $t("versionUpgradeNotice.body") }}</p>
-        <a :href="migrationGuideUrl" target="_blank" rel="noopener noreferrer">
+        {{ $t("versionUpgradeNotice.body") }}
+        <KsLink type="primary" :href="migrationGuideUrl" target="_blank">
             {{ $t("versionUpgradeNotice.cta") }}
-        </a>
+        </KsLink>
     </KsAlert>
 </template>
 
@@ -28,13 +28,13 @@
 </script>
 
 <style lang="scss" scoped>
-    .version-upgrade-notice {
+    // Spans the viewport above the app shell, so the card treatment of a standard alert is dropped.
+    // Matches the announcement, kill-switch and maintenance banners in the EE shell.
+    .banner {
         border-left: none;
         border-right: none;
         border-top: none;
         border-radius: 0;
         flex-shrink: 0;
-        padding-top: var(--ks-spacing-2);
-        padding-bottom: var(--ks-spacing-2);
     }
 </style>

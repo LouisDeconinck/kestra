@@ -16,7 +16,10 @@ function hrefFor(to: string) {
     const wrapper = mount(VersionUpgradeNotice, {
         global: {
             mocks: {$t: (key: string) => key},
-            stubs: {KsAlert: {template: "<div><slot /></div>"}},
+            stubs: {
+                KsAlert: {template: "<div><slot /></div>"},
+                KsLink: {props: ["href"], template: "<a :href=\"href\"><slot /></a>"},
+            },
         },
     })
     return wrapper.get("a").attributes("href")
