@@ -138,7 +138,12 @@
         docStore.docPath = docHistory.value[currentHistoryIndex.value]
     }
 
-    async function setDocPageFromResponse(response: {metadata?: any, content:string}) {
+    interface DocResourceResponse {
+        metadata?: {title?: string; isHomepage?: boolean; [key: string]: unknown};
+        content: string;
+    }
+
+    async function setDocPageFromResponse(response: DocResourceResponse) {
         docStore.pageMetadata = response.metadata
         let content = response.content
         if (!("canShare" in navigator)) {
@@ -174,7 +179,7 @@
     }
 
     async function refreshPage(val?: string) {
-        let response: {metadata?: any, content:string} | undefined = undefined
+        let response: DocResourceResponse | undefined = undefined
         // if this fails to return a value, fetch the default doc
         // if nothing, fetch the home page
         if(response === undefined){
@@ -207,7 +212,7 @@
     }, {immediate: true})
 
     const scrollableElement = computed(() => contextInfoRef.value?.contentRef ?? null)
-    useScrollMemory(ref("context-panel-docs"), scrollableElement as any)
+    useScrollMemory(ref("context-panel-docs"), scrollableElement)
 </script>
 
 <style scoped lang="scss">
